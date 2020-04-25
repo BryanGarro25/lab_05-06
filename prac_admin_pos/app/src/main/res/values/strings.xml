@@ -3,4 +3,6 @@
     <string name="Ingrese_email">Ingrese email</string>
     <string name="Ingrese_contraseña">Ingrese contraseña</string>
     <string name="Tngresar_boton">Ingresar</string>
+    <string name="registrar_boton">Registrar usuario</string>
+    <string name="cambiar_contraseña">Cambiar Contraseña</string>
 </resources>
