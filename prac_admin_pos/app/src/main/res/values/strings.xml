@@ -16,4 +16,19 @@
     <string name="invalid_email">Email no válido</string>
     <string name="invalid_password">Password is too short</string>
     <string name="error_incorrect_password">"contraseña incorrecta"</string>
+    <string name="careers">Careers</string>
+    <string-array name="countries">
+        <item>Country</item>
+        <item>Costa Rica</item>
+        <item>USA</item>
+        <item>Germany</item>
+        <item>England</item>
+    </string-array>
+    <string-array name="positions">
+        <item>Select a position</item>
+        <item>Project Manager</item>
+        <item>Software Architect</item>
+        <item>Senior Developer</item>
+        <item>Junior Developer</item>
+    </string-array>
 </resources>

@@ -11,6 +11,8 @@
         android:theme="@style/AppTheme">
         <activity android:name=".CambiarPassword"></activity>
         <activity android:name=".jobaplication" />
+        <activity android:name=".JobActivity"></activity>
+        <activity android:name=".jobaplication" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
