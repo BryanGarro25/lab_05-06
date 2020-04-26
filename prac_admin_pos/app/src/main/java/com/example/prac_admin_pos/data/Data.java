@@ -13,16 +13,16 @@ public class Data {
         this.prepareUserData();
     }
     public void prepareUserData() {
-        User User = new User("jose", "@jose", "jose", "678");
+        User User = new User("1","jose", "@jose", "jose", "678");
         userList.add(User);
 
-        User = new User("juan", "@juan", "juan", "876");
+        User = new User("2","juan", "@juan", "juan", "876");
         userList.add(User);
 
-        User = new User("mario", "@mario", "mario", "789");
+        User = new User("3","mario", "@mario", "mario", "789");
         userList.add(User);
 
-        User = new User("jesus", "@jesus", "jesus", "978");
+        User = new User("4","jesus", "@jesus", "jesus", "978");
         userList.add(User);
     }
 

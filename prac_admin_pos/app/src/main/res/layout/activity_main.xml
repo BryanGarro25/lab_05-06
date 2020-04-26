@@ -16,10 +16,8 @@
         android:theme="@style/AppTheme"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.425"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.527">
+        app:layout_constraintTop_toTopOf="parent">
 
         <EditText
             android:id="@+id/LoginEmail"
@@ -63,6 +61,7 @@
             style="?android:attr/borderlessButtonStyle"
             android:layout_width="212dp"
             android:layout_height="wrap_content"
+            android:onClick="cambiarPasword"
             android:text="@string/cambiar_contraseña" />
 
     </LinearLayout>
@@ -70,12 +69,9 @@
     <LinearLayout
         android:layout_width="142dp"
         android:layout_height="94dp"
-        android:layout_marginTop="48dp"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintTop_toTopOf="parent">
 
         <Space
             android:layout_width="0dp"

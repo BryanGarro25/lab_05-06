@@ -1,25 +1,30 @@
 package com.example.prac_admin_pos.model;
 
-public class User {
+import java.io.Serializable;
+
+public class User implements Serializable {
+    private String id;
     private String name;
     private String email;
     private String password;
     private String rol;
 
-    public User(String name, String email, String password, String rol){
+    public User(String id,String name, String email, String password, String rol){
+        this.id = id;
         this.name = name;
         this.email = email;
         this.password = password;
         this.rol = rol;
     }
     public User(){
+        id="";
         name = "";
         email = "";
         password = "";
         rol = "";
     }
     public String toString(){
-        return "Nombre: "+name + ", Email: "+email+", Password: "+password+", Rol: "+rol;
+        return "Id: "+id+", Nombre: "+name + ", Email: "+email+", Password: "+password+", Rol: "+rol;
     }
 
     public String getEmail() {
@@ -36,5 +41,13 @@ public class User {
 
     public String getRol() {
         return rol;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getId() {
+        return id;
     }
 }
