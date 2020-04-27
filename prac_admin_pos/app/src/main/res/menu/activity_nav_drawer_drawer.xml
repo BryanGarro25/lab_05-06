@@ -5,12 +5,12 @@
     <item android:title="Options">
         <menu>
             <item
-                android:id="@+id/nav_curso"
+                android:id="@+id/nav_list_job"
                 android:enabled="true"
                 android:icon="@drawable/ic_list"
                 android:title="List Job Applications" />
             <item
-                android:id="@+id/nav_profesor"
+                android:id="@+id/nav_apply_position"
                 android:enabled="true"
                 android:icon="@drawable/ic_list"
                 android:title="Apply for a Position" />

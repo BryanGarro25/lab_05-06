@@ -367,8 +367,8 @@
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="98dp"
-            android:layout_marginTop="20dp"
+            android:layout_height="87dp"
+            android:layout_marginTop="0dp"
             android:weightSum="100">
 
             <TextView
@@ -392,23 +392,25 @@
 
                 <ImageButton
                     android:id="@+id/cancel_button"
-                    android:layout_width="168dp"
-                    android:layout_height="wrap_content"
+                    android:layout_width="118dp"
+                    android:layout_height="83dp"
+                    android:layout_gravity="center"
                     android:layout_weight="80"
                     android:backgroundTint="#00FFFFFF"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    tools:src="@drawable/ic_cancel_i_foreground" />
+                    app:srcCompat="@drawable/ic_cancel_i_foreground" />
 
                 <ImageButton
                     android:id="@+id/send_button"
-                    android:layout_width="168dp"
-                    android:layout_height="match_parent"
+                    android:layout_width="125dp"
+                    android:layout_height="85dp"
+                    android:layout_gravity="center"
                     android:layout_weight="80"
-                    android:backgroundTint="#00FFFFFF"
+                    android:backgroundTint="#02FFFFFF"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    tools:src="@mipmap/ic_send_b_foreground" />
+                    app:srcCompat="@mipmap/ic_send_b_foreground" />
             </LinearLayout>
         </TableRow>
     </TableLayout>

@@ -1,5 +1,6 @@
 package com.example.prac_admin_pos;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -66,6 +67,34 @@ public class NavDrawerActivity extends AppCompatActivity implements NavigationVi
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-            return false;
+        int id = item.getItemId();
+        if(id== R.id.nav_list_job){
+            this.openListApplication();
+        } else {
+            if (id == R.id.nav_apply_position) {
+                this.openJobApplication();
+            } else{
+                if (id == R.id.nav_logout){
+                    this.logout();
+                }
+            }
+        }
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
+    }
+    private void openListApplication(){
+        /*finish();
+        Intent listApplication = new Intent(this, )*/
+    }
+    private void openJobApplication(){
+        finish();
+        Intent jobApp = new Intent(this, JobActivity.class);
+        startActivity(jobApp);
+    }
+    private void logout(){
+        finish();
+        Intent logout = new Intent(this, MainActivity.class);
+        startActivity(logout);
     }
 }
