@@ -2,7 +2,20 @@
     <string name="app_name">prac_admin_pos</string>
     <string name="Ingrese_email">Ingrese email</string>
     <string name="Ingrese_contraseña">Ingrese contraseña</string>
+    <string name="Ingrese_contraseña_anterior">Ingrese contraseña anterior</string>
+    <string name="Ingrese_contraseña_nueva">Ingrese contraseña nueva</string>
+    <string name="Repita_contraseña_nueva">Repita contraseña nueva</string>
     <string name="Tngresar_boton">Ingresar</string>
+    <string name="registrar_boton">Registrar usuario</string>
+    <string name="cambiar_contraseña">Cambiar Contraseña</string>
+    <string name="campo_vacio">Debe llenar este campo.</string>
+
+    <string name="email_vacio">Debe ingresar email</string>
+    <string name="invalid_username">Email no valido</string>
+    <string name="invalid_password_repeticion">Las contraseñas no coinciden.</string>
+    <string name="invalid_email">Email no válido</string>
+    <string name="invalid_password">Password is too short</string>
+    <string name="error_incorrect_password">"contraseña incorrecta"</string>
     <string name="careers">Careers</string>
     <string-array name="countries">
         <item>Country</item>

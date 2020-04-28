@@ -9,10 +9,22 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+<<<<<<< HEAD
         <activity
             android:name=".NavDrawerActivity"
             android:label="@string/title_activity_nav_drawer"
             android:theme="@style/AppTheme.NoActionBar">
+||||||| merged common ancestors
+        <activity android:name=".JobActivity"></activity>
+        <activity android:name=".jobaplication" />
+        <activity android:name=".MainActivity">
+=======
+        <activity android:name=".CambiarPassword"></activity>
+        <activity android:name=".jobaplication" />
+        <activity android:name=".JobActivity"></activity>
+        <activity android:name=".jobaplication" />
+        <activity android:name=".MainActivity">
+>>>>>>> d5a39b4690b85e32a0538b589efb4facb573dc56
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
