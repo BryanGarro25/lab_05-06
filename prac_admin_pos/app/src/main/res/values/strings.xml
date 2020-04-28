@@ -16,4 +16,32 @@
     <string name="invalid_email">Email no válido</string>
     <string name="invalid_password">Password is too short</string>
     <string name="error_incorrect_password">"contraseña incorrecta"</string>
+    <string name="careers">Careers</string>
+    <string-array name="countries">
+        <item>Country</item>
+        <item>Costa Rica</item>
+        <item>USA</item>
+        <item>Germany</item>
+        <item>England</item>
+    </string-array>
+    <string-array name="positions">
+        <item>Select a position</item>
+        <item>Project Manager</item>
+        <item>Software Architect</item>
+        <item>Senior Developer</item>
+        <item>Junior Developer</item>
+    </string-array>
+    <string name="title_activity_nav_drawer">Job Application</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Job Application</string>
+    <string name="nav_header_subtitle">Join Us</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+
+    <string name="home_second">Home Second</string>
 </resources>
