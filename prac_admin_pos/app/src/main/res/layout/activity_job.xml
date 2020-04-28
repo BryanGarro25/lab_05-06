@@ -364,9 +364,10 @@
                     android:text="Upload a File" />
             </LinearLayout>
         </TableRow>
+
         <TableRow
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="87dp"
             android:layout_marginTop="0dp"
             android:weightSum="100">
 
@@ -382,34 +383,34 @@
                 app:layout_constraintStart_toStartOf="parent" />
 
             <LinearLayout
-                android:layout_width="234dp"
-                android:layout_height="match_parent"
+                android:layout_width="241dp"
+                android:layout_height="61dp"
                 android:layout_marginStart="-80dp"
                 android:layout_marginEnd="80dp"
                 android:layout_weight="100"
                 android:orientation="horizontal">
 
-                <Button
-                    android:id="@+id/send_button"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="80"
-                    android:inputType="textPersonName"
-                    android:textSize="18sp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    android:text="@android:string/cancel" />
-
-                <Button
+                <ImageButton
                     android:id="@+id/cancel_button"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_width="118dp"
+                    android:layout_height="83dp"
+                    android:layout_gravity="center"
                     android:layout_weight="80"
-
-                    android:textSize="18sp"
+                    android:backgroundTint="#00FFFFFF"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    android:text="Send" />
+                    app:srcCompat="@drawable/ic_cancel_i_foreground" />
+
+                <ImageButton
+                    android:id="@+id/send_button"
+                    android:layout_width="125dp"
+                    android:layout_height="85dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="80"
+                    android:backgroundTint="#02FFFFFF"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:srcCompat="@mipmap/ic_send_b_foreground" />
             </LinearLayout>
         </TableRow>
     </TableLayout>

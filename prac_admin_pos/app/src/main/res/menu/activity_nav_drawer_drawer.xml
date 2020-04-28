@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+    <item android:title="Options">
+        <menu>
+            <item
+                android:id="@+id/nav_list_job"
+                android:enabled="true"
+                android:icon="@drawable/ic_list"
+                android:title="List Job Applications" />
+            <item
+                android:id="@+id/nav_apply_position"
+                android:enabled="true"
+                android:icon="@drawable/ic_list"
+                android:title="Apply for a Position" />
+            <item
+                android:id="@+id/nav_logout"
+                android:icon="@drawable/ic_out"
+                android:title="Log Out" />
+        </menu>
+    </item>
+</menu>
