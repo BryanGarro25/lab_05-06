@@ -84,8 +84,9 @@ public class NavDrawerActivity extends AppCompatActivity implements NavigationVi
         return true;
     }
     private void openListApplication(){
-        /*finish();
-        Intent listApplication = new Intent(this, )*/
+        finish();
+        Intent listApplication = new Intent(this, JobAppList.class);
+        startActivity(listApplication);
     }
     private void openJobApplication(){
         finish();
