@@ -63,9 +63,20 @@ public class JobAppList extends AppCompatActivity implements RecyclerItemTouchHe
         ItemTouchHelper.SimpleCallback itemTouchHelperCallback = new RecyclerItemTouchHelper(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT, this);
         new ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(mRecyclerView);
 
+        checkIntentInformation();
         mAdapter.notifyDataSetChanged();
-    }
 
+    }
+    private void checkIntentInformation(){
+        Bundle extras = getIntent().getExtras();
+        if(extras != null){
+            JobApp jobApp  = (JobApp)getIntent().getSerializableExtra("jobApp");
+            if(jobApp != null){
+                this.jobAppList.add(jobApp);
+                Toast.makeText(getApplicationContext(), "New register added", Toast.LENGTH_LONG).show();
+            }
+        }
+    }
     @Override
     public void onContactSelected(JobApp profesor) {
         Toast.makeText(getApplicationContext(), "Selected: " + profesor.getName() + ", " + profesor.getEmailAddress(), Toast.LENGTH_LONG).show();

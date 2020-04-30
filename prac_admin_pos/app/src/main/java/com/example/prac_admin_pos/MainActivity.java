@@ -74,9 +74,9 @@ public class MainActivity extends AppCompatActivity {
                UserLogged = user;
                UserEncontrado = true;
                Toast.makeText(this, "login exitoso", Toast.LENGTH_SHORT).show();
-               //finish();
-               //Intent a = new Intent(this, jobaplication.class);
-               //startActivity(a);
+               finish();
+               Intent a = new Intent(this, NavDrawerActivity.class);
+               startActivity(a);
            }else{
                if(emailValue.equals(user.getEmail()) && !passwordValue.equals(user.getPassword()) ){
                    UserEncontrado = true;

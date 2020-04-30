@@ -34,7 +34,7 @@ public class Data {
         JobApp jobApp1 = new JobApp("Josue", "Cespedes", "Alajuela",
                 "Palmares","Santiago", "", 20704, "Costa Rica",
                 "josue.cespedes19@gmail.com", 506,
-                "86605613", "Senior Developer", Calendar.getInstance());
+                "86605613", "Senior Developer", "04/29/2020");
         this.jobApps.add(jobApp1);
     }
     public List<User> getUserList() {
