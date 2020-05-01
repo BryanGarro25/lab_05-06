@@ -1,11 +1,15 @@
 package com.example.prac_admin_pos;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
+import android.widget.Toast;
 
+import com.example.prac_admin_pos.model.User;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
@@ -44,7 +48,7 @@ public class NavDrawerActivity extends AppCompatActivity implements NavigationVi
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
-
+        userPrivileges();
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         drawer.openDrawer(GravityCompat.START);
@@ -83,9 +87,38 @@ public class NavDrawerActivity extends AppCompatActivity implements NavigationVi
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+    public void userPrivileges() {
+
+        SharedPreferences prefs = this.getSharedPreferences(getString(R.string.preference_user_key), Context.MODE_PRIVATE);
+        String defaultValue = getResources().getString(R.string.preference_user_key_default);
+        String privilegio = prefs.getString(getString(R.string.preference_user_key), defaultValue);
+
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        Menu menu = navigationView.getMenu();
+        MenuItem holder;
+        switch (privilegio){
+            case "admin":
+                holder = menu.findItem(R.id.nav_list_job);
+                holder.setEnabled(true);
+                holder = menu.findItem(R.id.nav_logout);
+                holder.setEnabled(true);
+                holder = menu.findItem(R.id.nav_apply_position);
+                holder.setEnabled(true);
+                break;
+            case "user":
+                holder = menu.findItem(R.id.nav_apply_position);
+                holder.setEnabled(true);
+                holder = menu.findItem(R.id.nav_logout);
+                holder.setEnabled(true);
+                break;
+            default:
+                break;
+        }
+    }
     private void openListApplication(){
-        /*finish();
-        Intent listApplication = new Intent(this, )*/
+        finish();
+        Intent listApplication = new Intent(this, JobAppList.class);
+        startActivity(listApplication);
     }
     private void openJobApplication(){
         finish();

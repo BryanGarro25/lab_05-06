@@ -2,6 +2,7 @@ package com.example.prac_admin_pos;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,14 +17,27 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.prac_admin_pos.data.Data;
+import com.example.prac_admin_pos.model.JobApp;
+
+import java.sql.Array;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
 
 public class JobActivity extends AppCompatActivity {
+    private final int NO_ELEMENT_FOUND = -1;
+    private final int COUNTRIES_SPINNER = 1;
+    private final int POSITIONS_SPINNER = 2;
     private EditText firstName;
     private EditText lastName;
     private EditText streetAddress;
@@ -38,9 +52,9 @@ public class JobActivity extends AppCompatActivity {
     private Spinner position;
     private TextView date;
     private DatePickerDialog.OnDateSetListener dateSetListener;
-    private Button uploadButton;
-    private Button sendButton;
-    private Button cancelButton;
+    private ImageButton uploadButton;
+    private ImageButton sendButton;
+    private ImageButton cancelButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,13 +97,72 @@ public class JobActivity extends AppCompatActivity {
         position = findViewById(R.id.position);
 
         uploadButton = findViewById(R.id.upload_button2);
-        /*sendButton = findViewById(R.id.send_button);
-        cancelButton = findViewById(R.id.cancelButton);*/
+        sendButton = findViewById(R.id.send_button);
+        sendButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    buildJobApp();
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        cancelButton = findViewById(R.id.cancel_button);
+        cancelButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cancelJobApp();
+            }
+        });
         cleanText();
+        checkIntentInformation();
         //date picker
 
     }
-
+    private  void checkIntentInformation(){
+        Bundle extras = getIntent().getExtras();
+        if(extras != null){
+            JobApp jobApp  = (JobApp)getIntent().getSerializableExtra("jobApp");
+            setJobApp(jobApp);
+        }
+    }
+    private void setJobApp(JobApp jobApp){
+        firstName.setText(jobApp.getName());
+        lastName.setText(jobApp.getLastName());
+        streetAddress.setText(jobApp.getAddress1());
+        streetAddress2.setText(jobApp.getAddress2());
+        city.setText(jobApp.getCity());
+        state.setText(jobApp.getState());
+        postal.setText(Integer.toString(jobApp.getPostalCode()));
+        emailAddress.setText(jobApp.getEmailAddress());
+        areaCode.setText(Integer.toString(jobApp.getAreaCode()));
+        phoneNumber.setText(jobApp.getPhoneNumber());
+        date.setText(jobApp.getDate());
+        country.setSelection(getSpinnerPosition(COUNTRIES_SPINNER, jobApp.getCountry()));
+        position.setSelection(getSpinnerPosition(POSITIONS_SPINNER, jobApp.getPosition()));
+        //disabled
+        country.setEnabled(false);
+        position.setEnabled(false);
+        date.setEnabled(false);
+        sendButton.setVisibility(View.GONE);
+    }
+    private int getSpinnerPosition(int spinner, String Tvalue){
+        List<String> Tspinner = null;
+        if(spinner == COUNTRIES_SPINNER) {
+            String[] myResArray = getResources().getStringArray(R.array.countries);
+            Tspinner = new ArrayList<>(Arrays.asList(myResArray));
+        }
+        else{
+            String[] myResArray = getResources().getStringArray(R.array.positions);
+            Tspinner = new ArrayList<>(Arrays.asList(myResArray));
+        }
+         for(int i =0; i< Tspinner.size(); i++) {
+             if (Tspinner.get(i).equals(Tvalue))
+                 return i;
+         }
+         return NO_ELEMENT_FOUND;
+    }
     private void cleanText(){
         firstName.setText("");
         lastName.setText("");
@@ -101,6 +174,94 @@ public class JobActivity extends AppCompatActivity {
         emailAddress.setText("");
         areaCode.setText("");
         phoneNumber.setText("");
+    }
+    private void buildJobApp() throws ParseException {
+        JobApp jobApp = new JobApp();
+        if(!setErrors()){
+            try {
+                jobApp.setName(this.firstName.getText().toString());
+                jobApp.setLastName(this.lastName.getText().toString());
+                jobApp.setAddress1(this.streetAddress.getText().toString());
+                jobApp.setAddress2(this.streetAddress2.getText().toString());
+                jobApp.setCity(this.city.getText().toString());
+                jobApp.setState(this.state.getText().toString());
+                jobApp.setPostalCode(Integer.parseInt(this.postal.getText().toString()));
+                jobApp.setEmailAddress(this.emailAddress.getText().toString());
+                jobApp.setAreaCode(Integer.parseInt(this.areaCode.getText().toString()));
+                jobApp.setPhoneNumber(this.phoneNumber.getText().toString());
+                jobApp.setCountry(this.country.getSelectedItem().toString());
+                jobApp.setPosition(this.position.getSelectedItem().toString());
+                jobApp.setDate(this.date.getText().toString());
+                registerJobApp(jobApp);
+            }catch (Exception ex){
+                Toast.makeText(this, "Error has ocurred. Please, try again", Toast.LENGTH_SHORT).show();
+            }
+        } else{
+            Toast.makeText(this, "Information missing. Fill the requeriments", Toast.LENGTH_SHORT).show();
+        }
+
+    }
+    public void registerJobApp(JobApp jobApp){
+         Data.instance.getJobApps().add(jobApp);
+        /*Intent jobAppReady = new Intent(this, JobAppList.class);
+        jobAppReady.putExtra("jobApp", jobApp);
+        startActivity(jobAppReady);
+        finish();
+        Toast.makeText(this, "Registration has finished succesfully", Toast.LENGTH_SHORT).show();*/
+        Intent jobAppReady = new Intent(this, NavDrawerActivity.class);
+        startActivity(jobAppReady);
+        Toast.makeText(this, "Registration has finished succesfully", Toast.LENGTH_SHORT).show();
+        finish();
+    }
+    private void cancelJobApp(){
+        Intent cancel = new Intent(this,  NavDrawerActivity.class);
+        startActivity(cancel);
+        finish();
+    }
+    private boolean setErrors(){
+        boolean flag = false;
+        if(this.firstName.getText().toString().isEmpty()){
+            this.firstName.setError("Name is required");
+            flag = true;
+        }
+        if(this.lastName.getText().toString().isEmpty()){
+            this.lastName.setError("LastName is required");
+            flag = true;
+        }
+        if(this.streetAddress.getText().toString().isEmpty()){
+            this.streetAddress.setError("Address is required");
+            flag = true;
+        }
+        if(this.city.getText().toString().isEmpty()){
+            this.city.setError("City is required");
+            flag = true;
+        }
+        if(this.state.getText().toString().isEmpty()){
+            this.state.setError("State is required");
+            flag = true;
+        }
+        if(this.postal.getText().toString().isEmpty()){
+            this.postal.setError("Postal is required");
+            flag = true;
+        }
+        if(this.emailAddress.getText().toString().isEmpty()){
+            this.emailAddress.setError("Email is required");
+            flag = true;
+        } else {
+            if (!this.emailAddress.getText().toString().contains("@") || !this.emailAddress.getText().toString().contains(".")) {
+                this.emailAddress.setError("Email is invalid");
+                flag = true;
+            }
+        }
+        if(this.areaCode.getText().toString().isEmpty()){
+            this.areaCode.setError("Code required");
+            flag = true;
+        }
+        if(this.phoneNumber.getText().toString().isEmpty()){
+            this.phoneNumber.setError("Phone is required");
+            flag = true;
+        }
+        return flag;
     }
 }
 

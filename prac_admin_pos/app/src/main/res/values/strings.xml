@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">prac_admin_pos</string>
+    <string name="app_name">Job Application</string>
     <string name="Ingrese_email">Ingrese email</string>
     <string name="Ingrese_contraseña">Ingrese contraseña</string>
     <string name="Ingrese_contraseña_anterior">Ingrese contraseña anterior</string>
@@ -44,4 +44,15 @@
     <string name="menu_slideshow">Slideshow</string>
 
     <string name="home_second">Home Second</string>
+    <string name="title_activity_job_app_list">JobAppList</string>
+    <!-- Strings used for fragments for navigation -->
+    <!-- String related to shared preferences -->
+    <string name="preference_user_key">com.example.prac_admin_pos.USER</string>
+    <string name="preference_user_key_default">none</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+    <string name="delete">DELETE</string>
+    <string name="edit">VIEW</string>
+    <string name="appList">Job App List</string>
+    <string name="action_search">Buscar</string>
 </resources>

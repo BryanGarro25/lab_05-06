@@ -17,12 +17,12 @@ public class JobApp implements Serializable {
     private int areaCode;
     private String phoneNumber;
     private String position;
-    private Calendar date;
+    private String date;
 
 
     public JobApp(String name, String lastName, String address1, String address2,
                   String city, String state, int postalCode, String country,
-                  String emailAddress, int areaCode, String phoneNumber, String position, Calendar date){
+                  String emailAddress, int areaCode, String phoneNumber, String position, String date){
         this.name = name;
         this.lastName = lastName;
         this.address1 = address1;
@@ -50,7 +50,7 @@ public class JobApp implements Serializable {
         this.areaCode = 0;
         this.phoneNumber = "";
         this.position = "";
-        this.date = null;
+        this.date = "";
     }
     public String getName() {
         return name;
@@ -148,11 +148,11 @@ public class JobApp implements Serializable {
         this.position = position;
     }
 
-    public Calendar getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Calendar date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
@@ -171,7 +171,7 @@ public class JobApp implements Serializable {
                 ", areaCode=" + areaCode +
                 ", phoneNumber='" + phoneNumber + '\'' +
                 ", position='" + position + '\'' +
-                ", date=" + date.toString() +
+                ", date=" + date +
                 '}';
     }
 
