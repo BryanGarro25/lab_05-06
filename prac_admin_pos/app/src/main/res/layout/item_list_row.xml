@@ -20,7 +20,7 @@
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:layout_marginLeft="@dimen/padd_10"
-            android:src="@drawable/ic_edit_white" />
+            android:src="@drawable/ic_remove_red_eye_black_24dp" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -74,7 +74,7 @@
             android:ellipsize="end"
             android:fontFamily="sans-serif-medium"
             android:maxLines="1"
-            android:textColor="@color/item_name"
+            android:textColor="@color/design_default_color_on_secondary"
             android:textSize="17dp" />
 
         <TextView
@@ -86,7 +86,7 @@
             android:ellipsize="end"
             android:fontFamily="sans-serif-medium"
             android:maxLines="1"
-            android:textColor="@color/description"
+            android:textColor="@color/design_default_color_on_secondary"
             android:textSize="17dp" />
 
         <TextView
@@ -95,7 +95,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/titleFirstLbl"
             android:layout_marginTop="5dp"
-            android:textColor="@color/description"
+            android:textColor="@color/design_default_color_on_secondary"
             android:textSize="12dp" />
     </RelativeLayout>
 </FrameLayout>

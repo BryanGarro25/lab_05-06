@@ -22,16 +22,22 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.prac_admin_pos.data.Data;
 import com.example.prac_admin_pos.model.JobApp;
 
+import java.sql.Array;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 
 public class JobActivity extends AppCompatActivity {
+    private final int NO_ELEMENT_FOUND = -1;
+    private final int COUNTRIES_SPINNER = 1;
+    private final int POSITIONS_SPINNER = 2;
     private EditText firstName;
     private EditText lastName;
     private EditText streetAddress;
@@ -110,10 +116,53 @@ public class JobActivity extends AppCompatActivity {
             }
         });
         cleanText();
+        checkIntentInformation();
         //date picker
 
     }
-
+    private  void checkIntentInformation(){
+        Bundle extras = getIntent().getExtras();
+        if(extras != null){
+            JobApp jobApp  = (JobApp)getIntent().getSerializableExtra("jobApp");
+            setJobApp(jobApp);
+        }
+    }
+    private void setJobApp(JobApp jobApp){
+        firstName.setText(jobApp.getName());
+        lastName.setText(jobApp.getLastName());
+        streetAddress.setText(jobApp.getAddress1());
+        streetAddress2.setText(jobApp.getAddress2());
+        city.setText(jobApp.getCity());
+        state.setText(jobApp.getState());
+        postal.setText(Integer.toString(jobApp.getPostalCode()));
+        emailAddress.setText(jobApp.getEmailAddress());
+        areaCode.setText(Integer.toString(jobApp.getAreaCode()));
+        phoneNumber.setText(jobApp.getPhoneNumber());
+        date.setText(jobApp.getDate());
+        country.setSelection(getSpinnerPosition(COUNTRIES_SPINNER, jobApp.getCountry()));
+        position.setSelection(getSpinnerPosition(POSITIONS_SPINNER, jobApp.getPosition()));
+        //disabled
+        country.setEnabled(false);
+        position.setEnabled(false);
+        date.setEnabled(false);
+        sendButton.setVisibility(View.GONE);
+    }
+    private int getSpinnerPosition(int spinner, String Tvalue){
+        List<String> Tspinner = null;
+        if(spinner == COUNTRIES_SPINNER) {
+            String[] myResArray = getResources().getStringArray(R.array.countries);
+            Tspinner = new ArrayList<>(Arrays.asList(myResArray));
+        }
+        else{
+            String[] myResArray = getResources().getStringArray(R.array.positions);
+            Tspinner = new ArrayList<>(Arrays.asList(myResArray));
+        }
+         for(int i =0; i< Tspinner.size(); i++) {
+             if (Tspinner.get(i).equals(Tvalue))
+                 return i;
+         }
+         return NO_ELEMENT_FOUND;
+    }
     private void cleanText(){
         firstName.setText("");
         lastName.setText("");
@@ -143,7 +192,7 @@ public class JobActivity extends AppCompatActivity {
                 jobApp.setCountry(this.country.getSelectedItem().toString());
                 jobApp.setPosition(this.position.getSelectedItem().toString());
                 jobApp.setDate(this.date.getText().toString());
-                sendJobApp(jobApp);
+                registerJobApp(jobApp);
             }catch (Exception ex){
                 Toast.makeText(this, "Error has ocurred. Please, try again", Toast.LENGTH_SHORT).show();
             }
@@ -152,13 +201,17 @@ public class JobActivity extends AppCompatActivity {
         }
 
     }
-    public void sendJobApp(JobApp jobApp){
-
-        Intent jobAppReady = new Intent(this, JobAppList.class);
+    public void registerJobApp(JobApp jobApp){
+         Data.instance.getJobApps().add(jobApp);
+        /*Intent jobAppReady = new Intent(this, JobAppList.class);
         jobAppReady.putExtra("jobApp", jobApp);
         startActivity(jobAppReady);
         finish();
+        Toast.makeText(this, "Registration has finished succesfully", Toast.LENGTH_SHORT).show();*/
+        Intent jobAppReady = new Intent(this, NavDrawerActivity.class);
+        startActivity(jobAppReady);
         Toast.makeText(this, "Registration has finished succesfully", Toast.LENGTH_SHORT).show();
+        finish();
     }
     private void cancelJobApp(){
         Intent cancel = new Intent(this,  NavDrawerActivity.class);

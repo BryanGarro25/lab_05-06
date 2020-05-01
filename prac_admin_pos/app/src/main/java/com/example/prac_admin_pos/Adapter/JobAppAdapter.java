@@ -43,7 +43,7 @@ public class JobAppAdapter extends RecyclerView.Adapter<JobAppAdapter.MyViewHold
         final JobApp jobApp = jobAppListFiltered.get(position);
         holder.titulo1.setText(jobApp.getName());
         holder.titulo2.setText(jobApp.getEmailAddress());
-        holder.description.setText("Telefono " + jobApp.getPosition());
+        holder.description.setText("Position " + jobApp.getPosition());
     }
     @Override
     public int getItemCount() {
