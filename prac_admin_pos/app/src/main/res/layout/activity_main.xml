@@ -83,6 +83,7 @@
             style="?android:attr/borderlessButtonStyle"
             android:layout_width="133dp"
             android:layout_height="wrap_content"
+            android:onClick="registrar"
             android:text="@string/registrar_boton" />
 
     </LinearLayout>
