@@ -121,6 +121,11 @@ public class MainActivity extends AppCompatActivity {
 
        }
    }
+   public void registrar(View view){
+       Intent intent = new Intent(this, RegistroActivity.class);
+
+       startActivity(intent);
+   }
    public void intentInformation(){
        Bundle extras = getIntent().getExtras();
        if(extras != null){
