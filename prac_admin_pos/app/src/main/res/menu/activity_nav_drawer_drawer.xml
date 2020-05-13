@@ -6,16 +6,17 @@
         <menu>
             <item
                 android:id="@+id/nav_list_job"
-                android:enabled="true"
+                android:enabled="false"
                 android:icon="@drawable/ic_list"
                 android:title="List Job Applications" />
             <item
                 android:id="@+id/nav_apply_position"
-                android:enabled="true"
+                android:enabled="false"
                 android:icon="@drawable/ic_list"
                 android:title="Apply for a Position" />
             <item
                 android:id="@+id/nav_logout"
+                android:enabled="false"
                 android:icon="@drawable/ic_out"
                 android:title="Log Out" />
         </menu>

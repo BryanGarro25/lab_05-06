@@ -2,7 +2,9 @@ package com.example.prac_admin_pos;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -21,16 +23,18 @@ public class MainActivity extends AppCompatActivity {
     private EditText passwordView ;
     private User UserLogged;
     private List<User> userList;
+    private SharedPreferences prefs;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toast.makeText(this, "OnCreate", Toast.LENGTH_SHORT).show();
         // La actividad está creada.
+        prefs = this.getSharedPreferences(getString(R.string.preference_user_key), Context.MODE_PRIVATE);
+
         emailView = (EditText)findViewById(R.id.LoginEmail);
         passwordView = (EditText)findViewById(R.id.loginPasword);
-        Data d1 = new Data();
-        userList = d1.getUserList();
+
+        userList = Data.instance.getUserList();
         passwordView.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -73,10 +77,11 @@ public class MainActivity extends AppCompatActivity {
                //llama la otra actividad
                UserLogged = user;
                UserEncontrado = true;
-               Toast.makeText(this, "login exitoso", Toast.LENGTH_SHORT).show();
-               //finish();
-               //Intent a = new Intent(this, jobaplication.class);
-               //startActivity(a);
+
+               finish();
+               prefs.edit().putString((getString(R.string.preference_user_key)), user.getRol()).apply();
+               Intent a = new Intent(this, NavDrawerActivity.class);
+               startActivity(a);
            }else{
                if(emailValue.equals(user.getEmail()) && !passwordValue.equals(user.getPassword()) ){
                    UserEncontrado = true;

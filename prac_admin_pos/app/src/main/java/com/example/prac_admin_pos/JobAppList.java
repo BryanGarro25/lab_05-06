@@ -48,10 +48,11 @@ public class JobAppList extends AppCompatActivity implements RecyclerItemTouchHe
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle(getString(R.string.appList));
 
+        this.coordinatorLayout = findViewById(R.id.coordinator_layout_job_app);
         mRecyclerView = findViewById(R.id.recycler_jobAppList);
         jobAppList = new ArrayList<>();
-        model = new Data();
-        jobAppList = model.getJobApps();
+
+        jobAppList = Data.instance.getJobApps();
         mAdapter = new JobAppAdapter(jobAppList, this);
         whiteNotificationBar(mRecyclerView);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
@@ -63,9 +64,20 @@ public class JobAppList extends AppCompatActivity implements RecyclerItemTouchHe
         ItemTouchHelper.SimpleCallback itemTouchHelperCallback = new RecyclerItemTouchHelper(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT, this);
         new ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(mRecyclerView);
 
+        checkIntentInformation();
         mAdapter.notifyDataSetChanged();
-    }
 
+    }
+    private void checkIntentInformation(){
+        Bundle extras = getIntent().getExtras();
+        if(extras != null){
+            JobApp jobApp  = (JobApp)getIntent().getSerializableExtra("jobApp");
+            if(jobApp != null){
+                this.jobAppList.add(jobApp);
+                Toast.makeText(getApplicationContext(), "New register added", Toast.LENGTH_LONG).show();
+            }
+        }
+    }
     @Override
     public void onContactSelected(JobApp profesor) {
         Toast.makeText(getApplicationContext(), "Selected: " + profesor.getName() + ", " + profesor.getEmailAddress(), Toast.LENGTH_LONG).show();
@@ -125,14 +137,13 @@ public class JobAppList extends AppCompatActivity implements RecyclerItemTouchHe
                 snackbar.setActionTextColor(Color.YELLOW);
                 snackbar.show();
             }
-        } else { //edicion de un profesor
-            /*Profesor aux = mAdapter.getSwipedItem(viewHolder.getAdapterPosition());
+        } else {
+            JobApp aux = mAdapter.getSwipedItem(viewHolder.getAdapterPosition());
             //send data to Edit Activity
-            Intent intent = new Intent(this, AddUpdProfesorActivity.class);
-            intent.putExtra("editable", true);
-            intent.putExtra("profesor", aux);
+            Intent intent = new Intent(this, JobActivity.class);
+            intent.putExtra("jobApp", aux);
             mAdapter.notifyDataSetChanged(); //restart left swipe view
-            startActivity(intent);*/
+            startActivity(intent);
         }
     }
     public void onBackPressed() {
